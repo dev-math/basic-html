@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Por Matheus Rocha. @matheustemh</h1>
+  <p>Desafio do módulo Manipulando a DOM do Curso JavaScript - Starter da Rocketseat.</p>
+  <h2>Enunciado dos exercícios: </h2>
+  <article>
+    <h1>Exercícios: Módulo 02</h1>
+    <h2>1º exercício</h2>
+    <p>Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadrado vermelho com 100px de
+      altura e largura. Sempre que o botão for clicado um novo quadrado deve aparecer na tela.</p>
+    <h2>2º exercício</h2>
+    <p>Utilizando o resultado do primeiro desafio, toda vez que o usuário passar o mouse por cima de algum quadrado
+      troque sua cor para uma cor aleatória gerada pela função abaixo:</p>
+    <div>
+      <pre>function getRandomColor() {
+     var letters = '0123456789ABCDEF';
+     var color = '#';
+     for (var i = 0; i &lt; 6; i++) {
+     color += letters[Math.floor(Math.random() * 16)];
+     }
+     return color;
+    }
+    var newColor = getRandomColor(); // #E943F0</pre>
+    </div>
+    <h2>3º exercício</h2>
+    <p>A partir do seguinte vetor:</p>
+    <div>
+      <pre>var nomes = ['Diego', 'Gabriel', 'Lucas'];</pre>
+    </div>
+    <p>Preencha uma lista (<code>&lt;ul&gt;</code>) no HTML com os itens da seguinte forma:</p>
+    <ul>
+      <li>Diego</li>
+      <li>Gabriel</li>
+      <li>Lucas</li>
+    </ul>
+    <h2>4º exercício</h2>
+    <p>Seguindo o resultado do exercício anterior adicione um input em tela e um botão como a seguir:</p>
+    <div>
+      <pre>&lt;input type="text" name="nome"&gt;
+    &lt;button onClick="adicionar()"&gt;Adicionar&lt;/button&gt;</pre>
+    </div>
+    <p>Ao clicar no botão, a função <code>adicionar()</code> deve ser disparada adicionando um novo item a lista de
+      nomes baseado no nome preenchido no input e renderizando o novo item em tela juntos aos demais itens anteriores.
+      Além disso, o conteúdo do input deve ser apagado após o clique.</p>
+    <h2>5º exercício (Desafio master, vai encarar?)</h2>
+    <p>Dado o seguinte vetor:</p>
+    <div>
+      <pre>var users = [
+     {
+     nome: 'Diego',
+     idade: 23,
+     sexo: 'M',
+     },
+     {
+     nome: 'Gabriela',
+     idade: 18,
+     sexo: 'F',
+     },
+     {
+     nome: 'José',
+     idade: 30,
+     sexo: 'M',
+     },
+     {
+     nome: 'Maria',
+     idade: 27,
+     sexo: 'F',
+     }
+    ];</pre>
+    </div>
+    <p>Exiba os dados em tela em forma de lista como a seguir e crie 3 botões abaixo:</p>
+    <div>
+      <pre>&lt;ul&gt;
+     &lt;li&gt;Diego é homem e possui 23 anos&lt;/li&gt;
+     &lt;li&gt;Gabriela é mulher e possui 18 anos&lt;/li&gt;
+     &lt;li&gt;José é homem e possui 30 anos&lt;/li&gt;
+     &lt;li&gt;Maria é mulher e possui 27 anos&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;button onClick=""&gt;Ordenar por nome&lt;/button&gt;
+    &lt;button onClick=""&gt;Ordenar por idade&lt;/button&gt;
+    &lt;button onClick=""&gt;Exibir apenas homens&lt;/button&gt;
+    &lt;button onClick=""&gt;Exibir apenas mulheres&lt;/button&gt;
+    &lt;button onClick=""&gt;Exibir todos&lt;/button&gt;</pre>
+    </div>
+    <p>Os dois primeiros botões devem ordenar a lista, por nome e por idade. Os outros 3 botões devem aplicar filtros na
+      lista exibindo apenas homens, apenas mulheres ou todos. Lembrando que o filtro deve funcionar junto da ordenação
+      então deve ser possível filtrar apenas homens e ordenar por idade.</p>
+  </article>
+
+  <hr>
+  <h1>Resoluções</h1>
+  <div id="exercicio1">
+    <h2>Exercício 1 e 2</h2>
+    <button onclick="criaQuadrado()">Click-me</button>
+    <br><br>
+  </div>
+
+  <div id="exercicio2">
+    <h2>Exercício 3 e 4</h2>
+    <h3>Array</h3>
+    <button id="ex34" onClick="exercicio34()">Go!</button>
+    <br>
+  </div>
+
+  <div id="exercicio5">
+    <h2>Exercício 5</h2>
+    <button id="ex5" onClick="exercicio5()">Go!</button>
+  </div>
+
+  <script>
+    function criaQuadrado() {
+      const boxElement = document.createElement('div');
+      boxElement.setAttribute('id', 'box');
+      boxElement.style.display = 'inline-block';
+      boxElement.style.width = '50px';
+      boxElement.style.height = '50px';
+      boxElement.style.marginRight = '50px';
+      boxElement.style.backgroundColor = '#f00';
+      boxElement.onmouseover = function () {
+        boxElement.style.background = getRandomColor();
+      };
+      const containerElement = document.querySelector('#exercicio1');
+      containerElement.appendChild(boxElement);
+    }
+
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    var nomes = ['Diego', 'Gabriel', 'Lucas'];
+    const inputElement = document.createElement('input');
+    const ulElement = document.createElement('ul');
+    
+    function exercicio34() {
+      const containerElement = document.querySelector('#exercicio2');
+      const btnElement = document.createElement('button');
+      const btnText = document.createTextNode("Adicionar");
+      const btnGo = document.querySelector('#ex34');
+      btnGo.removeAttribute('onclick');
+      btnElement.setAttribute('onclick', 'adicionar()');
+      btnElement.appendChild(btnText);
+      inputElement.type = "text";
+      inputElement.name = "nome";
+      containerElement.appendChild(ulElement);
+      containerElement.appendChild(inputElement);
+      containerElement.appendChild(btnElement);
+      for (const name of nomes) {
+        const liElement = document.createElement('li');
+        const liValue = document.createTextNode(name);
+        liElement.appendChild(liValue);
+        ulElement.appendChild(liElement);
+      }
+    }
+    
+    function adicionar() {
+      if (inputElement.value !== "") {
+        const liElement = document.createElement('li');
+        const liValue = document.createTextNode(inputElement.value);
+        liElement.appendChild(liValue);
+        ulElement.appendChild(liElement);
+        inputElement.value = "";
+      }
+    }
+
+    // function exercicio5() {
+    //   var users = [
+    //     {
+    //       nome: 'Diego',
+    //       idade: 23,
+    //       sexo: 'M',
+    //     },
+    //     {
+    //       nome: 'Gabriela',
+    //       idade: 18,
+    //       sexo: 'F',
+    //     },
+    //     {
+    //       nome: 'José',
+    //       idade: 30,
+    //       sexo: 'M',
+    //     },
+    //     {
+    //       nome: 'Maria',
+    //       idade: 27,
+    //       sexo: 'F',
+    //     }
+    //   ];
+    //   const containerElement = document.querySelector('#exercicio5');
+    //   const ulElement = document.createElement('ul');
+
+    //   for (const usuario of users) {
+    //     const {nome, idade, sexo} = usuario;
+    //     const liElement = document.createElement('li');
+    //     const liValue = nome + " é " + sexo;
+    //   }
+
+
+    // }
+
+  </script>
+</body>
+
+</html>
