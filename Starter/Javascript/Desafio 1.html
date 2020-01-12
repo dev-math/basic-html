@@ -10,7 +10,7 @@
 
 <body>
   <h1>Por Matheus Rocha. @matheustemh</h1>
-  <p>Desafio do módulo Introdução JavaScript do curso javascript - Starter da Rocketseat.</p>
+  <p>Desafio do módulo Introdução JavaScript do Curso JavaScript - Starter da Rocketseat.</p>
   <h2>Enunciado dos exercícios: </h2>
   <article>
     <h1>Exercícios: Módulo 01</h1>
@@ -140,12 +140,7 @@
         case "3":
           console.clear();
           function temHabilidade(skills) {
-            let existe;
-            if (skills.indexOf("Javascript") != -1) {
-              existe = true;
-            } else {
-              existe = false;
-            }
+            let existe = (skills.indexOf("Javascript") != -1);
             return existe;
           }
           var skills = ['Javascript', 'ReactJS', 'React Native'];
