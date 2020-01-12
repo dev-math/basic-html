@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Desafio 1</title>
+</head>
+
+<body>
+  <h1>Por Matheus Rocha. @matheustemh</h1>
+  <p>Desafio do módulo Introdução JavaScript do curso javascript - Starter da Rocketseat.</p>
+  <h2>Enunciado dos exercícios: </h2>
+  <article>
+    <h1>Exercícios: Módulo 01</h1>
+    <h2>1º exercício</h2>
+    <p>Crie uma função que dado o objeto a seguir:</p>
+    <div>
+      <pre>var endereco = {
+       rua: 'Rua dos pinheiros',
+       numero: 1293,
+       bairro: 'Centro',
+       cidade: 'São Paulo',
+       uf: 'SP'
+      };</pre>
+    </div>
+    <p>Retorne o seguinte conteúdo:</p>
+    <pre><code>O usuário mora em São Paulo / SP, no bairro Centro, na rua "Rua dos Pinheiros" com nº 1293.
+      </code></pre>
+    <h2><a href="#2º-exercício"></a>2º exercício</h2>
+    <p>Crie uma função que dado um intervalo (entre x e y) exiba todos número pares:</p>
+    <div>
+      <pre>function pares(x, y) {
+       // código aqui
+      }
+      pares(32, 321);</pre>
+    </div>
+    <h2><a href="#3º-exercício"></a>3º exercício</h2>
+    <p>Escreva uma função que verifique se o vetor de habilidades passado possui a habilidade "Javascript" e retorna um
+      booleano <code>true/false</code> caso exista ou não.</p>
+    <div>
+      <pre>function temHabilidade(skills) {
+       // código aqui
+      }
+      var skills = ['Javascript', 'ReactJS', 'React Native'];
+      temHabilidade(skills); // true ou false</pre>
+    </div>
+    <p><em>Dica: para verificar se um vetor contém um valor, utilize o método <a
+          href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"
+          rel="nofollow">indexOf</a>.</em></p>
+    <h2><a href="#4º-exercício"></a>4º exercício</h2>
+    <p>Escreva uma função que dado um total de anos de estudo retorna o quão experiente o usuário é:</p>
+    <div>
+      <pre>function experiencia(anos) {
+       // código aqui
+      }
+      var anosEstudo = 7;
+      experiencia(anosEstudo);
+      // De 0-1 ano: Iniciante
+      // De 1-3 anos: Intermediário
+      // De 3-6 anos: Avançado
+      // De 7 acima: Jedi Master</pre>
+    </div>
+    <h2><a href="#5º-exercício"></a>5º exercício</h2>
+    <p>Dado o seguinte vetor de objetos:</p>
+    <div>
+      <pre>var usuarios = [
+       {
+       nome: 'Diego',
+       habilidades: ['Javascript', 'ReactJS', 'Redux']
+       },
+       {
+       nome: 'Gabriel',
+       habilidades: ['VueJS', 'Ruby on Rails', 'Elixir']
+       }
+      ];</pre>
+    </div>
+    <p>Escreva uma função que produza o seguinte resultado:</p>
+    <pre><code>O Diego possui as habilidades: Javascript, ReactJS, Redux
+      O Gabriel possui as habilidades: VueJS, Ruby on Rails, Elixir
+      </code></pre>
+    <p><em>Dica: Para percorrer um vetor você deve utilizar a sintaxe <a
+          href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...of"
+          rel="nofollow">for...of</a> e para unir valores de um array com um separador utilize o <a
+          href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/join"
+          rel="nofollow">join</a>.</em></p>
+    <h2><a href="#6º-exercício-desafio-master-vai-encarar"></a>6º exercício (Desafio master, vai encarar?)</h2>
+    <p>Em uma página crie uma função que dado um número de minutos crie um countdown em tempo real (de segundo a
+      segundo) até chegar em zero no formato <code>08:30:20</code>, por exemplo:</p>
+    <div>
+      <pre>function countdown(minutos) {
+       // código aqui
+      }
+      countdown(70);
+      // 70 minutos equivalem a 1 hora e 10 minutos
+      // 01:10:00
+      // 01:09:59
+      // 01:09:58
+      // 01:09:57
+      // 01:09:56</pre>
+    </div>
+    <p><em>Dica: Para manipular datas e horários você pode utilizar a <a
+          href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date"
+          rel="nofollow">classe Date do Javascript</a>.</em></p>
+  </article>
+  <button onclick="exercicios()">Começar exercícios</button>
+
+  <script>
+    function exercicios() {
+      let exercicio = prompt("Selecione um exercício de 1 a 6: \n Visualize a saída no console.");
+      switch (exercicio) {
+        case "1":
+          console.clear();
+          var endereco = {
+            rua: "Rua dos pinheiros",
+            numero: 1293,
+            bairro: "Centro",
+            cidade: "São Paulo",
+            uf: "SP"
+          };
+          function exibeEnd({ rua, numero, bairro, cidade, uf }) {
+            return "O usuário mora em " + cidade + " / " + uf + ", no bairro " + bairro + ", na rua \"" + rua + "\" com o nº " + numero + ".";
+          }
+          console.log(exibeEnd(endereco));
+          break;
+
+        case "2":
+          console.clear();
+          function pares(x, y) {
+            for (let index = x; index <= y; index++) {
+              if (index % 2 == 0) {
+                console.log(index);
+              }
+            }
+          }
+          pares(32, 321);
+          break;
+
+        case "3":
+          console.clear();
+          function temHabilidade(skills) {
+            let existe;
+            if (skills.indexOf("Javascript") != -1) {
+              existe = true;
+            } else {
+              existe = false;
+            }
+            return existe;
+          }
+          var skills = ['Javascript', 'ReactJS', 'React Native'];
+          console.log(temHabilidade(skills));
+          break;
+
+        case "4":
+          console.clear();
+          function experiencia(anos) {
+            if (anos == 0 && anos <= 1) {
+              return "Iniciante";
+            } else if (anos > 1 && anos <= 3) {
+              return "Intermediário";
+            } else if (anos > 3 && anos <= 6) {
+              return "Avançado";
+            } else if (anos >= 7) {
+              return "Jedi Master";
+            } else {
+              return "Erro";
+            }
+          }
+          var anosEstudo = 7;
+          console.log(experiencia(anosEstudo));
+          break;
+
+        case "5":
+          console.clear();
+          var usuarios = [
+            {
+              nome: 'Diego',
+              habilidades: ['Javascript', 'ReactJS', 'Redux']
+            },
+            {
+              nome: 'Gabriel',
+              habilidades: ['VueJS', 'Ruby on Rails', 'Elixir']
+            }
+          ];
+          function exibeSkills() {
+            for (const usuario of usuarios) {
+              const { nome, habilidades } = usuario;
+              console.log("O " + nome + " possui as habilidades: " + habilidades.join(', ') + ".");
+            }
+          }
+          exibeSkills();
+          break;
+
+        case "6":
+          console.clear();
+          function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
+
+          async function countdown(tempominutos) {
+            let tempo = new Date();
+            tempo.setHours(0, tempominutos, 0);
+            let tempoformatado = tempo.toLocaleTimeString();
+            console.log(tempoformatado);
+            while ((tempo.getSeconds() > 0) || (tempo.getMinutes() > 0) || (tempo.getHours() > 0)) {
+              tempo.setSeconds(tempo.getSeconds() - 1);
+              await sleep(1000);
+              tempoformatado = tempo.toLocaleTimeString();
+              console.log(tempoformatado);
+            }
+          }
+          countdown(70);
+          break;
+
+        default:
+          console.log("Insira um exercício...");
+          break;
+      }
+    }
+  </script>
+</body>
+
+</html>
