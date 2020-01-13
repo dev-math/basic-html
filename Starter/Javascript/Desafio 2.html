@@ -144,7 +144,7 @@
     var nomes = ['Diego', 'Gabriel', 'Lucas'];
     const inputElement = document.createElement('input');
     const ulElement = document.createElement('ul');
-    
+
     function exercicio34() {
       const containerElement = document.querySelector('#exercicio2');
       const btnElement = document.createElement('button');
@@ -165,7 +165,7 @@
         ulElement.appendChild(liElement);
       }
     }
-    
+
     function adicionar() {
       if (inputElement.value !== "") {
         const liElement = document.createElement('li');
@@ -176,40 +176,131 @@
       }
     }
 
-    // function exercicio5() {
-    //   var users = [
-    //     {
-    //       nome: 'Diego',
-    //       idade: 23,
-    //       sexo: 'M',
-    //     },
-    //     {
-    //       nome: 'Gabriela',
-    //       idade: 18,
-    //       sexo: 'F',
-    //     },
-    //     {
-    //       nome: 'José',
-    //       idade: 30,
-    //       sexo: 'M',
-    //     },
-    //     {
-    //       nome: 'Maria',
-    //       idade: 27,
-    //       sexo: 'F',
-    //     }
-    //   ];
-    //   const containerElement = document.querySelector('#exercicio5');
-    //   const ulElement = document.createElement('ul');
+    var users = [
+      {
+        nome: 'Diego',
+        idade: 23,
+        sexo: 'M',
+      },
+      {
+        nome: 'Gabriela',
+        idade: 18,
+        sexo: 'F',
+      },
+      {
+        nome: 'José',
+        idade: 30,
+        sexo: 'M',
+      },
+      {
+        nome: 'Maria',
+        idade: 27,
+        sexo: 'F',
+      }
+    ];
+    const ulElement5 = document.createElement('ul');
+    let ordematual;
 
-    //   for (const usuario of users) {
-    //     const {nome, idade, sexo} = usuario;
-    //     const liElement = document.createElement('li');
-    //     const liValue = nome + " é " + sexo;
-    //   }
+    function exercicio5() {
+      ordematual = "Todos";
+      const btnGo = document.querySelector('#ex5');
+      const containerElement = document.querySelector('#exercicio5');
+      const btnNomeElement = document.createElement('button');
+      const btnIdadeElement = document.createElement('button');
+      const btnHomemElement = document.createElement('button');
+      const btnMulherElement = document.createElement('button');
+      const btnGeralElement = document.createElement('button');
+      const nometxt = document.createTextNode("Ordenar por nome");
+      const idadetxt = document.createTextNode("Ordenar por idade");
+      const homemtxt = document.createTextNode("Exibir apenas homens");
+      const mulhertxt = document.createTextNode("Exibir apenas mulheres");
+      const geraltxt = document.createTextNode("Exibir todos");
+      ulElement5.setAttribute('id', 'listausers');
+      containerElement.appendChild(ulElement5);
+      btnGo.removeAttribute('onclick');
+      btnNomeElement.setAttribute('onClick', 'ordemNome()');
+      btnNomeElement.appendChild(nometxt);
+      btnIdadeElement.setAttribute('onClick', 'ordemIdade()');
+      btnIdadeElement.appendChild(idadetxt);
+      btnHomemElement.setAttribute('onClick', 'ordemHomem()');
+      btnHomemElement.appendChild(homemtxt);
+      btnMulherElement.setAttribute('onClick', 'ordemMulher()');
+      btnMulherElement.appendChild(mulhertxt);
+      btnGeralElement.setAttribute('onClick', 'ordemGeral()');
+      btnGeralElement.appendChild(geraltxt);
+      containerElement.appendChild(btnNomeElement);
+      containerElement.appendChild(btnIdadeElement);
+      containerElement.appendChild(btnHomemElement);
+      containerElement.appendChild(btnMulherElement);
+      containerElement.appendChild(btnGeralElement);
+      listarVetor();
+    }
 
+    function limpalista() {
+      const listapovoada = document.querySelectorAll("#listausers li");
+      for (let index = 0; index < listapovoada.length; index++) {
+        const element = listapovoada[index];
+        element.parentElement.removeChild(element);
+      }
+    }
 
-    // }
+    function listarVetor() {
+      const filterM = users.filter(item => item.sexo === "M");
+      const filterF = users.filter(item => item.sexo === "F");
+      if (ordematual == "Homens") {
+        _users = filterM;
+      } else if (ordematual == "Mulheres") {
+        _users = filterF;
+      } else if (ordematual == "Todos") {
+        _users = users;
+      }
+      listarVetorpt2();
+    }
+
+    function listarVetorpt2() {
+      limpalista();
+      for (const usuario of _users) {
+        const { nome, idade, sexo } = usuario;
+        const liElement = document.createElement('li');
+        const sexos = (sexo === 'M') ? 'homem' : 'mulher';
+        const liValue = document.createTextNode(nome + " é " + sexos + " e possui " + idade + " anos.");
+        liElement.appendChild(liValue);
+        ulElement5.appendChild(liElement);
+      }
+    }
+
+    function ordemNome() {
+      _users.sort(function (a, b) {
+        if (a.nome.toUpperCase() < b.nome.toUpperCase()) return -1;
+        if (a.nome.toUpperCase() > b.nome.toUpperCase()) return 1;
+        return 0;
+      });
+      listarVetorpt2();
+    }
+
+    function ordemIdade() {
+      _users.sort(function (a, b) {
+        if (a.idade < b.idade) return -1;
+        if (a.idade > b.idade) return 1;
+        return 0;
+      });
+      listarVetorpt2();
+    }
+
+    function ordemHomem() {
+      ordematual = "Homens";
+      listarVetor();
+    }
+
+    function ordemMulher() {
+      ordematual = "Mulheres";
+      listarVetor();
+    }
+
+    function ordemGeral() {
+      ordematual = "Todos";
+      listarVetor();
+    }
 
   </script>
 </body>
